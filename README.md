@@ -21,3 +21,10 @@ They can solve easy issues on this repository and get into the list of `contribu
 After setting it up, if you wanna learn more, follow this article.
 
 -   [Intermediate git guide](https://gist.github.com/harshjohar/d958cfcbfcfaf60742cd66ad6c01c1cc)
+
+
+## Contributors
+
+<a href="https://github.com/PEC-CSS/graveyard/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PEC-CSS/graveyard" />
+</a>
