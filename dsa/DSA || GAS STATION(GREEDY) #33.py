@@ -1,5 +1,5 @@
 def gascheck(j,counter,remaining_gas,cost_for_next_station):
-        if(counter==5):
+        if(counter==n):
             return 106
         elif(remaining_gas>=cost_for_next_station):
             j=j+1
