@@ -3,7 +3,7 @@ int main()
     int N,a,i,j,count=0;
     printf("Enter N=");
     scanf("%d",&N);
-    if(2<=N<=500)
+    if(N>=2 & N<=500)
     {
         int A[500];
         for(a=0;a<N;a++)
