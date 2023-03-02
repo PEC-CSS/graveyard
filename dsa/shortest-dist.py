@@ -15,6 +15,10 @@ class Solution:
             original_start_index = 0
             for word in words:
                 target_index = words.index(target)
+                if words[startIndex] == target:
+                    count_0 = 0
+                    print(count_0)
+                    break
                 if startIndex+1 < n:
                     nextword = words[startIndex+1]
                     count_1 += 1
@@ -35,8 +39,9 @@ class Solution:
 
             target_index = words.index(target) 
             startIndex = m
+            original_start_index_2 = len(words)-1
             for word_2 in words:
-                original_start_index_2 = len(words)
+                
                 target_index = words.index(target)
                 
                 if startIndex - 1 >= 0:
@@ -48,7 +53,7 @@ class Solution:
 
                     startIndex -= 1
                 if startIndex-1 < 0:
-                    prevword = words[original_start_index_2-1]
+                    prevword = words[original_start_index_2]
                     count_2 += 1
                     
                     if prevword == words[target_index]:
