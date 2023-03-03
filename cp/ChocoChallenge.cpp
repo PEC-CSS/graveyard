@@ -1,32 +1,45 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 int main() {
     int n;
     cin >> n;
 
-    // Read the chocolate counts for each box
-    vector<int> boxes(n);
-    for (int i = 0; i < n; i++) {
-        cin >> boxes[i];
-    }
+    int a[n];
+    int xor_sum = 0;
+    int max_chocs = 0;
+    int count_max_chocs = 0;
 
-    // Calculate the sum of all box counts
-    int sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += boxes[i];
-    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        xor_sum ^= a[i];
 
-    // Check if the first player can always win
-    int count = 0;
-    for (int i = 0; i < n; i++) {
-        if (boxes[i] >= sum - boxes[i]) {
-            count++;
+        if (a[i] > max_chocs)
+        {
+            max_chocs = a[i];
+            count_max_chocs = 1;
+        }
+        else if (a[i] == max_chocs)
+        {
+            count_max_chocs++;
         }
     }
-
-    cout << count << endl;
-
+    if (xor_sum != 0 || count_max_chocs > 1)
+    {
+        cout << "0" << endl;
+    }
+    else
+    {
+        int count = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (a[i] == max_chocs)
+            {
+                count++;
+            }
+        }
+        cout << count << endl;
+    }
     return 0;
 }
