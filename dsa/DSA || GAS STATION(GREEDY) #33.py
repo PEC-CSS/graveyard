@@ -10,8 +10,8 @@ def gascheck(j, counter, remaining_gas, cost_for_next_station,n):
         counter = counter + 1
         if((gascheck(j, counter, remaining_gas, cost_for_next_station,n))==106):
             return 106
-gas = list(map(int, input()))
-cost = list(map(int, input()))
+gas = list(map(int, input().split()))
+cost = list(map(int, input().split()))
 n = len(gas)
 index = -1
 for i in range(n):
