@@ -29,7 +29,7 @@ impl ComplexNumber {
         println!("{} + i {}", self.real, self.imaginary);
     }
 
-    fn modulus(&self) -> f64 {
+    fn abs(&self) -> f64 {
         return f64::powf(
             (self.real * self.real) + (self.imaginary * self.imaginary),
             0.5,
@@ -49,7 +49,7 @@ impl ComplexNumber {
     }
 
     fn inverse(&self) -> ComplexNumber {
-        return self.conjugate() / (self.modulus() * self.modulus());
+        return self.conjugate() / (self.abs() * self.abs());
     }
 }
 
@@ -282,6 +282,54 @@ impl ops::DivAssign<ComplexNumber> for ComplexNumber {
     }
 }
 
+impl ComplexNumber {
+    fn pow(&self, exp: f64) -> ComplexNumber {
+        let abs = self.abs();
+        let arg = self.argument();
+        
+        if abs == 0.0 {
+            return ComplexNumber {
+                real: 0.0,
+                imaginary: 0.0,
+            };
+        }
+        let theta = exp * arg;
+        let r = f64::powf(abs, exp);
+
+        // TODO
+        return ComplexNumber {
+            real: r * f64::cos(theta),
+            imaginary: r * f64::sin(theta),
+        };
+    }
+
+    fn cpow(&self, exp: ComplexNumber) -> ComplexNumber {
+        let x = exp.real;
+        let y = exp.imaginary;
+
+        let abs = self.abs();
+        if abs == 0.0 {
+            return ComplexNumber {
+                real: 0.0,
+                imaginary: 0.0,
+            };
+        }
+        let arg = self.argument();
+        let mut r = f64::powf(abs, x);
+        let mut theta = x * arg;
+
+        if y != 0.0 {
+            r *= f64::exp(-y * arg);
+            theta += y * f64::ln(abs);
+        }
+
+        return ComplexNumber {
+            real: r * f64::cos(theta),
+            imaginary: r * f64::sin(theta),
+        };
+    }
+}
+
 fn main() {
     let c1 = ComplexNumber {
         real: 4.0,
@@ -296,14 +344,20 @@ fn main() {
     let mul = &c1 * &c2;
     let div = &c1 / &c2;
     let arg = c1.argument();
-    let modulus = c1.modulus();
+    let abs = c1.abs();
     let inverse = c1.inverse();
+    let cpow = c1.cpow(c2);
+    let pow = c1.pow(2.0);
 
+    c1.print();
+    c2.print();
     sum.print();
     diff.print();
     mul.print();
     div.print();
     println!("{}", arg);
-    println!("{}", modulus);
+    println!("{}", abs);
     inverse.print();
+    cpow.print();
+    pow.print();
 }
