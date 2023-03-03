@@ -6,6 +6,33 @@ struct ComplexNumber {
     imaginary: f64,
 }
 
+// Properties
+impl ComplexNumber {
+    fn abs(&self) -> f64 {
+        return f64::powf(
+            (self.real * self.real) + (self.imaginary * self.imaginary),
+            0.5,
+        );
+    }
+
+    fn argument(&self) -> f64 {
+        return f64::atan(self.imaginary / self.real);
+    }
+
+    fn conjugate(&self) -> ComplexNumber {
+        let i = self.imaginary * -1.0;
+        return ComplexNumber {
+            real: self.real,
+            imaginary: i,
+        };
+    }
+
+    fn inverse(&self) -> ComplexNumber {
+        return self.conjugate() / (self.abs() * self.abs());
+    }
+}
+
+// Print
 impl ComplexNumber {
     fn print(&self) {
         let r = self.real;
@@ -28,30 +55,9 @@ impl ComplexNumber {
 
         println!("{} + i {}", self.real, self.imaginary);
     }
-
-    fn abs(&self) -> f64 {
-        return f64::powf(
-            (self.real * self.real) + (self.imaginary * self.imaginary),
-            0.5,
-        );
-    }
-
-    fn conjugate(&self) -> ComplexNumber {
-        let i = self.imaginary * -1.0;
-        return ComplexNumber {
-            real: self.real,
-            imaginary: i,
-        };
-    }
-
-    fn argument(&self) -> f64 {
-        return f64::atan(self.imaginary / self.real);
-    }
-
-    fn inverse(&self) -> ComplexNumber {
-        return self.conjugate() / (self.abs() * self.abs());
-    }
 }
+
+// Operators
 
 impl ops::Add<&ComplexNumber> for &ComplexNumber {
     type Output = ComplexNumber;
@@ -282,11 +288,12 @@ impl ops::DivAssign<ComplexNumber> for ComplexNumber {
     }
 }
 
+// power
 impl ComplexNumber {
     fn pow(&self, exp: f64) -> ComplexNumber {
         let abs = self.abs();
         let arg = self.argument();
-        
+
         if abs == 0.0 {
             return ComplexNumber {
                 real: 0.0,
@@ -330,6 +337,43 @@ impl ComplexNumber {
     }
 }
 
+// Trigonometric
+impl ComplexNumber {
+    fn sin(c: ComplexNumber) -> ComplexNumber {
+        let x = c.real;
+        let y = c.imaginary;
+
+        return ComplexNumber {
+            real: f64::sin(x) * f64::cosh(y),
+            imaginary: f64::cos(x) * f64::sinh(y),
+        };
+    }
+    fn cos(c: ComplexNumber) -> ComplexNumber {
+        let x = c.real;
+        let y = c.imaginary;
+
+        return ComplexNumber {
+            real: f64::cos(x) * f64::cosh(y),
+            imaginary: f64::sin(x) * f64::sinh(y),
+        };
+    }
+    fn tan(c: ComplexNumber) -> ComplexNumber {
+        return ComplexNumber::sin(c) / ComplexNumber::cos(c);
+    }
+    fn cot(c: ComplexNumber) -> ComplexNumber {
+        let one = ComplexNumber {real: 1.0, imaginary: 0.0};
+        return one/ComplexNumber::tan(c);
+    }
+    fn sec(c: ComplexNumber) -> ComplexNumber {
+        let one = ComplexNumber {real: 1.0, imaginary: 0.0};
+        return one/ComplexNumber::cos(c);
+    }
+    fn cosec(c: ComplexNumber) -> ComplexNumber {
+        let one = ComplexNumber {real: 1.0, imaginary: 0.0};
+        return one/ComplexNumber::sin(c);
+    }
+}
+
 fn main() {
     let c1 = ComplexNumber {
         real: 4.0,
@@ -349,6 +393,13 @@ fn main() {
     let cpow = c1.cpow(c2);
     let pow = c1.pow(2.0);
 
+    let sin = ComplexNumber::sin(c1);
+    let cos = ComplexNumber::cos(c1);
+    let tan = ComplexNumber::tan(c1);
+    let sec = ComplexNumber::sec(c1);
+    let cot = ComplexNumber::cot(c1);
+    let cosec = ComplexNumber::cosec(c1);
+
     c1.print();
     c2.print();
     sum.print();
@@ -360,4 +411,10 @@ fn main() {
     inverse.print();
     cpow.print();
     pow.print();
+    sin.print();
+    cos.print();
+    tan.print();
+    cot.print();
+    cosec.print();
+    sec.print();
 }
