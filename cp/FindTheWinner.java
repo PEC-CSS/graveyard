@@ -23,6 +23,7 @@ public class PECFootballTour {
         for(Entry<String, Integer> entry : map.entrySet()) {
             if(entry.getValue() > maxScore) {
                 winningTeam = entry.getKey();
+                maxScore = entry.getValue();
             }
         }
         System.out.println(winningTeam);
