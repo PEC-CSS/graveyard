@@ -6,14 +6,14 @@ int main() {
     cin >> n;
 
     int a[n];
-    int xor = 0;
+    int xor_sum= 0;
     int max_chocs = 0;
     int count_max_chocs = 0;
 
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        xor ^= a[i];
+        xor_sum ^= a[i];
 
         if (a[i] > max_chocs)
         {
@@ -25,7 +25,7 @@ int main() {
             count_max_chocs++;
         }
     }
-    if (xor != 0 || count_max_chocs > 1)
+    if (xor_sum != 0 || count_max_chocs > 1)
     {
         cout << "0" << endl;
     }
