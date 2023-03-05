@@ -1,4 +1,4 @@
-def gascheck(j, counter, remaining_gas, cost_for_next_station,n,gas,cost):
+def gascheck(j,counter,remaining_gas,cost_for_next_station,n,gas,cost):
     if (counter == n):
         return 106
     elif (remaining_gas >= cost_for_next_station):
