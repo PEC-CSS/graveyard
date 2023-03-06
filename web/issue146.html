@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Document</title>
+   <style>
+       button {
+           text-align: center;
+           display: inline-block;
+           font-size: 20px;
+           margin: 5px 2px;
+           cursor: pointer;
+           background-color: #deda56; 
+           border: none;
+           color: white;
+           padding: 20px 30px;
+           
+       }
+   </style>
+</head>
+<body>
+   <button id="BingBtn">Bing</button>
+   <button id="WikipediaBtn">  Wikipedia  </button>
+   <iframe id="iframe" width="100%" height="600"></iframe>
+   <script>
+    document.getElementById("BingBtn").onclick = function() {
+			document.getElementById("iframe").src = "https://www.bing.com";
+		};
+		document.getElementById("WikipediaBtn").onclick = function() {
+			document.getElementById("iframe").src = "https://www.wikipedia.com";
+		};
+   </script>
+
+</body>
+</html>
