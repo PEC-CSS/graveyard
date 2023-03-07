@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
-void Divide(int *a,int n){
+void Divide(long *a,int n){
     int check = 0;
     for(int i=0; i<n; i++){
-        int x = a[i];
         a[i]++;
-        if((a[i]+1)%x==0){
+        long x = a[i];
+        if((x%(a[i-1])==0 || (a[i-1])%x==0) && i>0){
             a[i]++;
         }
         check++;
@@ -16,7 +16,7 @@ void Divide(int *a,int n){
 int main(){
     int n;
     cin>>n;
-    int a[n];
+    long a[n];
     for(int i=0; i<n; i++){
         cin>>a[i];
     }
