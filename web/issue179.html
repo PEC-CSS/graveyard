@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .image-preview{
+        width:300px;
+        min-height: 100px;
+        border: 2px solid #dddddd ;
+        margin-top: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: centre;
+        font-weight: bold;
+        color: #cccccc;
+       }
+        .image-preview__image{
+            display: none;
+            width: 100%;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Preview on File Uploads</h1>
+    <input type="file" name="inpFile" id="inpFile">
+    <div class="image-preview" id="imagePreview">
+        <img src="" alt="image-preview" class="image-preview__image">
+       <span class="image-preview__default-text">Image Preview</span>
+
+    </div>
+    <script>
+        const inpFile = document.getElementById("inpFile");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+        inpFile.addEventListener("change", function() {
+              const file= this.files[0];
+              console.log(file);
+              if (file){
+                const reader = new FileReader();
+                previewDefaultText.style.display="none";
+                previewImage.style.display="block";
+
+                reader.addEventListener("load", function() {
+                    console.log(this)
+                 previewImage.setAttribute("src", this.result);
+                });
+                reader.readAsDataURL(file);
+              }
+
+        });
+
+    </script>
+</body>
+</html>
