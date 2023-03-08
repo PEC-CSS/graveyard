@@ -5,33 +5,63 @@
 </head>
 <body>
     <form action="" id="MyForm">
-    <div>
-        <h1 id="Question">Sample Question? </h1>
-    </div>
-    <h2>
-    <div>
-        <input type="radio" id="option1" name="MCQ" value="0">
-        <label for="option1">Option1</label>
-    </div>
-    <div>
-        <input type="radio" id="option2" name="MCQ" value="1">
-        <label for="option2">Option2</label>
-    </div>
-    <div>
-        <input type="radio" id="option3" name="MCQ" value="2">
-        <label for="option3">Option3</label>
-    </div>
-    <div>
-        <input type="radio" id="option4" name="MCQ" value="3">
-        <label for="option4">Option4</label>
-    </div>
-    </div>
-        <input type="button" id="BUTTON">Submit</button>
-    </div>
+        <div>
+            <h1 id="Question">Sample Question? </h1>
+        </div>
+        <h2>
+        <div>
+            <input type="radio" id="option1" name="MCQ" value=0>
+            <label for="option1">Option1</label>
+        </div>
+        <div>
+            <input type="radio" id="option2" name="MCQ" value=1>
+            <label for="option2">Option2</label>
+        </div>
+        <div>
+            <input type="radio" id="option3" name="MCQ" value=2>
+            <label for="option3">Option3</label>
+        </div>
+        <div>
+            <input type="radio" id="option4" name="MCQ" value=3>
+            <label for="option4">Option4</label>
+        </div>
+        </div>
+            <input type="button" id="BUTTON"  onclick="checkquestion()">
+            <label for="BUTTON">SUBMIT</label>
+        </div>
         </h2>
     </form>
     <script>
-        function loadquestion(questions,i){
+        function checkquestion(){
+            i=result.i;
+            let opt1=document.getElementById("option1");
+            let opt2=document.getElementById("option2");
+            let opt3=document.getElementById("option3");
+            let opt4=document.getElementById("option4");
+            optionsarray=[opt1,opt2,opt3,opt4];
+            for(j=0;j<4;j=j+1){
+                if(optionsarray[j].checked){
+                    let optionmarked = optionsarray[j].value;
+                };
+            };
+            if(optionmarked==questions[i][answer]){
+                result.correct=result.correct+1 ;
+            }
+            for(j=0;j<4;j=j+1){
+                if(optionsarray[j].checked){
+                    optionsarray[j].checked=false;
+                };};
+            result.i=result.i+1;
+            if(i==questions.length){
+                quizend();
+            }else{
+                loadquestion();
+            };}
+        function quizend(){
+            alert("Your final score is ",result.correct);
+        }
+        function loadquestion(){
+            i=result.i;
             let que = document.getElementById("Question");
             que.innerText=questions[i].question;
             let opt1=document.getElementById("option1");
@@ -42,6 +72,9 @@
             opt3.nextElementSibling.innerText=questions[i].options[2];
             let opt4=document.getElementById("option4");
             opt4.nextElementSibling.innerText=questions[i].options[3];
+            if(i>0){
+                checkquestion();
+            }
             
         };
         
@@ -53,33 +86,17 @@
 	question:"What is the capital of Israel?",
 	options:["Istanbul","Ankara","Jerusalem","Barbara"],
 	answer: 2
+},{
+    question:"What is the capital of India?",
+    options:["Chandigarh","Maharashtra","New Delhi","Kerela"],
+    answer: 2
+},{
+    question:"What is the capital of Japan",
+    options:["Tokyo","Kyoto","Osaka","Hokkaido"],
+    answer: 0
 }];
-    result={correct:0}
-    i=0
-    if(i<2){
-        loadquestion(questions,i)
-        document.getElementById("BUTTON").addEventListener('click', function answercheck(){
-            
-                let opt1=document.getElementById("option1");
-                let opt2=document.getElementById("option2");
-                let opt3=document.getElementById("option3");
-                let opt4=document.getElementById("option4");
-                optionsarray=[opt1,opt2,opt3,opt4];
-            for(j in optionsarray){
-                if(j.checked){
-                    let optionmarked = j.value
-                };
-            };
-            if(optionmarked==questions[i][answer]){
-                result.correct=result.correct+1 
-            }
-            
-        });
-        let a=document.getElementById("MyForm")
-        a.reset()
-        i=i+1
-    }
-    alert("Your score is",result.correct)   
+    result={correct:0,i:0};
+    loadquestion();
     </script>
 
 </body>
