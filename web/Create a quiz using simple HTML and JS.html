@@ -4,7 +4,7 @@
     <title>Quiz Website</title>
 </head>
 <body>
-    <form action="" id="My">
+    <form action="" id="MyForm">
     <div>
         <h1 id="Question">Sample Question? </h1>
     </div>
@@ -59,7 +59,6 @@
     if(i<2){
         loadquestion(questions,i)
         document.getElementById("BUTTON").addEventListener('click', function answercheck(){
-            alert(i)
             
                 let opt1=document.getElementById("option1");
                 let opt2=document.getElementById("option2");
@@ -76,7 +75,7 @@
             }
             
         });
-        let a=document.getElementById("My")
+        let a=document.getElementById("MyForm")
         a.reset()
         i=i+1
     }
