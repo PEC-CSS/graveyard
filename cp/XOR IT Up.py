@@ -17,3 +17,5 @@ for i in range(no_of_testcases):
         if(func(combined_array)==x):
             print(x)
             break
+        else:
+            combined_array.insert(j,x)
