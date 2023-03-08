@@ -1,13 +1,9 @@
 s=str(input())
 k=int(input())
-d={}
-length=0
-if (1 <= len(s) <= 10**4) and (1 <= k <= 26):
-    for p in range(len(s)):
-        d[s[p]]=s.count(s[p])
-
-    sorted_d = sorted(d.items(), key=lambda x:x[1], reverse=True)
-
-    for i in range(k):
-        length=length+sorted_d[i][1]
-    print(length)
+output=[]
+for i in range(len(s)):
+    for j in range(i+1, len(s)+1):
+        set1=set(s[i:j])
+        if len(set1)==k:
+            output.append((j-i))
+print(max(output))
