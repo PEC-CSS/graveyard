@@ -11,9 +11,9 @@ int main()
                 cin>>x[i];
             }
     }
-    for(int i = 0; i<T;i++)
+    for(int j = 0; j<T;j++)
         {
-            cout<<x[i]-10<<endl;
+            cout<<x[j]-10<<endl;
         }
     return 0;
 }
