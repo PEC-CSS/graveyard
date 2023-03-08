@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quiz Website</title>
+</head>
+<body>
+    <form action="" id="My">
+    <div>
+        <h1 id="Question">Sample Question? </h1>
+    </div>
+    <h2>
+    <div>
+        <input type="radio" id="option1" name="MCQ" value="0">
+        <label for="option1">Option1</label>
+    </div>
+    <div>
+        <input type="radio" id="option2" name="MCQ" value="1">
+        <label for="option2">Option2</label>
+    </div>
+    <div>
+        <input type="radio" id="option3" name="MCQ" value="2">
+        <label for="option3">Option3</label>
+    </div>
+    <div>
+        <input type="radio" id="option4" name="MCQ" value="3">
+        <label for="option4">Option4</label>
+    </div>
+    </div>
+        <input type="button" id="BUTTON">Submit</button>
+    </div>
+        </h2>
+    </form>
+    <script>
+        function loadquestion(questions,i){
+            let que = document.getElementById("Question");
+            que.innerText=questions[i].question;
+            let opt1=document.getElementById("option1");
+            opt1.nextElementSibling.innerText=questions[i].options[0];
+            let opt2=document.getElementById("option2");
+            opt2.nextElementSibling.innerText=questions[i].options[1];
+            let opt3=document.getElementById("option3");
+            opt3.nextElementSibling.innerText=questions[i].options[2];
+            let opt4=document.getElementById("option4");
+            opt4.nextElementSibling.innerText=questions[i].options[3];
+            
+        };
+        
+        let questions=[{
+	question:"What is the capital of Turkey?",
+	options:["Istanbul","Ankara","Jerusalem","Barbara"],
+	answer: 1
+},{
+	question:"What is the capital of Israel?",
+	options:["Istanbul","Ankara","Jerusalem","Barbara"],
+	answer: 2
+}];
+    result={correct:0}
+    i=0
+    if(i<2){
+        loadquestion(questions,i)
+        document.getElementById("BUTTON").addEventListener('click', function answercheck(){
+            alert(i)
+            
+                let opt1=document.getElementById("option1");
+                let opt2=document.getElementById("option2");
+                let opt3=document.getElementById("option3");
+                let opt4=document.getElementById("option4");
+                optionsarray=[opt1,opt2,opt3,opt4];
+            for(j in optionsarray){
+                if(j.checked){
+                    let optionmarked = j.value
+                };
+            };
+            if(optionmarked==questions[i][answer]){
+                result.correct=result.correct+1 
+            }
+            
+        });
+        let a=document.getElementById("My")
+        a.reset()
+        i=i+1
+    }
+    alert("Your score is",result.correct)   
+    </script>
+
+</body>
+</html>
