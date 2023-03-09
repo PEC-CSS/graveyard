@@ -23,8 +23,9 @@ int main() {
         }
     }
     if (xor_sum == 0)
+    {
         cout << "0" << endl;
-    
+    }
     else
     {
         int count = 0;
