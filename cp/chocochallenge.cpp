@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <climits>
 using namespace std;
 
 int main() {
@@ -9,7 +10,7 @@ int main() {
     int a[n];
     int xor_sum= 0;
     int max_chocs = 0;
-    int count_max_chocs = 0;
+    int count_max_chocs = INT_MAX;
 
     for (int i = 0; i < n; i++)
     {
@@ -32,7 +33,7 @@ int main() {
         for (int i = 0; i < n; i++)
         {
             int temp = xor_sum ^ a[i];
-            if (temp <= a[i] && a[i] - temp < count_max_chocs)
+            if (temp <= a[i])
             {
                 count++;
             }
