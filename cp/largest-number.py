@@ -26,5 +26,4 @@ def merge(map):
   return "".join(temp)
 
 inp = input().strip("[").strip("]").split(",")
-print(yield_map(inp))
 print(merge(yield_map(inp)))
