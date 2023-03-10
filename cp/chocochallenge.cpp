@@ -10,7 +10,7 @@ int main() {
     int a[n];
     int xor_sum= 0;
     int max_chocs = 0;
-    int count_max_chocs = INT_MAX;
+    int count_max_chocs = INT_MIN;
 
     for (int i = 0; i < n; i++)
     {
