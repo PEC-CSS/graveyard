@@ -27,7 +27,7 @@ function startTimer() {
     }
 
     if (seconds > 9) {
-        append.seconds.innerHTML = seconds;
+        appendSeconds.seconds.innerHTML = seconds;
     }
 }
 
