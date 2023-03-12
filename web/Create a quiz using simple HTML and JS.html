@@ -26,28 +26,35 @@
             <label for="option4">Option4</label>
         </div>
         </div>
-        <input type="button" id="BUTTON" label="Submit" onclick="checkquestion()">Submit
+        <input type="button" id="BUTTON" value="SUBMIT" onclick="checkquestion()">
         </div>
         </h2>
     </form>
     <script>
         function checkquestion(){
             let k=result.i;
-            let opt1=document.getElementById("option1");
+            if(k==questions.length){
+                quizrestart();
+            }else{
+                let opt1=document.getElementById("option1");
             let opt2=document.getElementById("option2");
             let opt3=document.getElementById("option3");
             let opt4=document.getElementById("option4");
             let optionsarray=[opt1,opt2,opt3,opt4];
+            optionmarked=4
             for(let j=0;j<4;j=j+1){
                 if(optionsarray[j].checked){
-                    let optionmarked = optionsarray[j].value;
+                    var optionmarked = optionsarray[j].value;
                     if(optionmarked==questions[k].answer){
                         result.correct=result.correct+1 ;
              }
                 };
             };
-            
-            for(j=0;j<4;j=j+1){
+            if(optionmarked==4){
+                alert("Select an option and then submit.")
+            }
+            else{
+                for(j=0;j<4;j=j+1){
                 if(optionsarray[j].checked){
                     optionsarray[j].checked=false;
                 };};
@@ -56,9 +63,25 @@
                 quizend();
             }else{
                 loadquestion();
-            };}
+            }}
+            }
+            }
+            
+        function quizrestart(){
+            result.i=0;
+            result.correct=0;
+            document.getElementById("MyForm").style.visibility="visible"
+            let restart=document.getElementById("BUTTON");
+            restart.value="SUBMIT"
+            loadquestion()
+        }
+            
         function quizend(){
             alert(`Your final score is ${result.correct}`);
+            document.getElementById("MyForm").style.visibility="hidden"
+            document.getElementById("BUTTON").style.visibility="visible"
+            let restart=document.getElementById("BUTTON");
+            restart.value="RESTART"
         }
         function loadquestion(){
             k=result.i;
