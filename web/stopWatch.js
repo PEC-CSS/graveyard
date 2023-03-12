@@ -8,31 +8,34 @@ var buttonReset = document.getElementById("button-reset");
 var interval;
 
 function startTimer() {
-    tens++;
+    tens ++;
 
-    if (tens < 9) {
+    if (tens < 10) {
         appendTens.innerHTML = "0" + tens;
     }
     
-    if (tens > 9) {
+    else {
         appendTens.innerHTML = tens;
     }
 
     if (tens > 99) {
-        seconds++;
-        appendSeconds.innerHTML = "0" + seconds;
-        
         tens = 0;
-        appendTens.innerHTML = "0" + 0;
-    }
+        seconds ++;
 
-    if (seconds > 9) {
-        append.seconds.innerHTML = seconds;
+        if (seconds < 10) {
+            appendSeconds.innerHTML = "0" + seconds;
+        }
+
+        else {
+            appendSeconds.innerHTML = seconds;
+        }
+
+        appendTens.innerHTML = "0" + 0;
     }
 }
 
 buttonStart.onclick = function() {
-    interval = setInterval(startTimer);
+    interval = setInterval(startTimer, 10);
 };
 
 buttonStop.onclick = function() {
