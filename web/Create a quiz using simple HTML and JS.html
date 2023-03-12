@@ -52,13 +52,13 @@
                     optionsarray[j].checked=false;
                 };};
             result.i=result.i+1;
-            if(k==questions.length){
+            if(k==questions.length-1){
                 quizend();
             }else{
                 loadquestion();
             };}
         function quizend(){
-            alert("Your final score is ",result.correct);
+            alert(`Your final score is ${result.correct}`);
         }
         function loadquestion(){
             k=result.i;
