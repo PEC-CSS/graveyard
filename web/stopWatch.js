@@ -32,6 +32,10 @@ function startTimer() {
 
         appendTens.innerHTML = "0" + 0;
     }
+
+    if (seconds > 9) {
+        append.seconds.innerHTML = seconds;
+    }
 }
 
 buttonStart.onclick = function() {
