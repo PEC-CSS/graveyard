@@ -6,7 +6,7 @@
 <body>
     <form action="" id="MyForm">
         <div>
-            <h1 id="Question">Sample Question? </h1>
+            <h1 id="Question1">Sample Question? </h1>
         </div>
         <h2>
         <div>
@@ -26,33 +26,33 @@
             <label for="option4">Option4</label>
         </div>
         </div>
-            <input type="button" id="BUTTON"  onclick="checkquestion()">
-            <label for="BUTTON">SUBMIT</label>
+        <input type="button" id="BUTTON" label="Submit" onclick="checkquestion()">Submit
         </div>
         </h2>
     </form>
     <script>
         function checkquestion(){
-            i=result.i;
+            let k=result.i;
             let opt1=document.getElementById("option1");
             let opt2=document.getElementById("option2");
             let opt3=document.getElementById("option3");
             let opt4=document.getElementById("option4");
-            optionsarray=[opt1,opt2,opt3,opt4];
-            for(j=0;j<4;j=j+1){
+            let optionsarray=[opt1,opt2,opt3,opt4];
+            for(let j=0;j<4;j=j+1){
                 if(optionsarray[j].checked){
                     let optionmarked = optionsarray[j].value;
+                    if(optionmarked==questions[k].answer){
+                        result.correct=result.correct+1 ;
+             }
                 };
             };
-            if(optionmarked==questions[i][answer]){
-                result.correct=result.correct+1 ;
-            }
+            
             for(j=0;j<4;j=j+1){
                 if(optionsarray[j].checked){
                     optionsarray[j].checked=false;
                 };};
             result.i=result.i+1;
-            if(i==questions.length){
+            if(k==questions.length){
                 quizend();
             }else{
                 loadquestion();
@@ -61,18 +61,18 @@
             alert("Your final score is ",result.correct);
         }
         function loadquestion(){
-            i=result.i;
-            let que = document.getElementById("Question");
-            que.innerText=questions[i].question;
+            k=result.i;
+            let que = document.getElementById("Question1");
+            que.innerText=questions[k].question;
             let opt1=document.getElementById("option1");
-            opt1.nextElementSibling.innerText=questions[i].options[0];
+            opt1.nextElementSibling.innerText=questions[k].options[0];
             let opt2=document.getElementById("option2");
-            opt2.nextElementSibling.innerText=questions[i].options[1];
+            opt2.nextElementSibling.innerText=questions[k].options[1];
             let opt3=document.getElementById("option3");
-            opt3.nextElementSibling.innerText=questions[i].options[2];
+            opt3.nextElementSibling.innerText=questions[k].options[2];
             let opt4=document.getElementById("option4");
-            opt4.nextElementSibling.innerText=questions[i].options[3];
-            if(i>0){
+            opt4.nextElementSibling.innerText=questions[k].options[3];
+            if(k>0){
                 checkquestion();
             }
             
@@ -95,7 +95,7 @@
     options:["Tokyo","Kyoto","Osaka","Hokkaido"],
     answer: 0
 }];
-    result={correct:0,i:0};
+    let result={correct:0,i:0};
     loadquestion();
     </script>
 
